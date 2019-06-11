@@ -5,7 +5,7 @@ class Category(models.Model):
     root=models.ForeignKey('self',on_delete=models.CASCADE,blank=True,null=True,);
     category_name=models.CharField(max_length=256,);
     def __str__(self):
-        return self.category;
+        return self.category_name;
 class Product(models.Model):
     under_category=models.ManyToManyField(Category,);
     name=models.CharField(max_length=256);
