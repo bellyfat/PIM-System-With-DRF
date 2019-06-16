@@ -6,10 +6,15 @@ class NumberChilds(models.Manager):
     def get_queryset(self):
         return super(NumberChilds,self).get_queryset().childs.count();
 class Category(models.Model):
-    objects = models.Manager()
+    #ثءهف)(objects = models.Manager()
     root=models.ForeignKey('self',on_delete=models.CASCADE,blank=True,null=True,related_name="childs");
     category_name=models.CharField(max_length=256,);
-    number_of_childs=NumberChilds();
+    
+    # get number of child for each instance of category class
+    @property
+    def child_number(self):
+        return self.childs.count();
+    
     def __str__(self):
         return self.category_name;
 class Product(models.Model):
