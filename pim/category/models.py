@@ -4,7 +4,7 @@ from django.db import models
 
 class NumberChilds(models.Manager):
     def get_queryset(self):
-        return self.childs.count();
+        return super(NumberChilds,self).get_queryset().childs.count();
 class Category(models.Model):
     objects = models.Manager()
     root=models.ForeignKey('self',on_delete=models.CASCADE,blank=True,null=True,related_name="childs");
